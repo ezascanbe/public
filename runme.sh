@@ -21,3 +21,4 @@ else
     echo "$FILE does not exist. Downloading $VERSION..."
     /usr/bin/curl -L https://s3.cloudianhyperstore.com/downloads/HyperStore/7/$VERSION/$FILE --output $WORKINGPATH$FILE
     do_stuff
+fi
