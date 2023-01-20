@@ -20,5 +20,7 @@ if [ -f "$FILE" ]; then
 else
     echo "$FILE does not exist. Downloading $VERSION..."
     curl -L https://s3.cloudianhyperstore.com/downloads/HyperStore/7/$VERSION/$FILE --output $WORKINGPATH/$FILE
+    #UK mirror uncomment to use
+    #curl -L  https://s3-uk-1.downloads.cloudian.eu/data/HyperStore/7/$VERSION/$FILE --output $WORKINGPATH/$FILE
     run_install
 fi
