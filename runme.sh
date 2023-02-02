@@ -1,17 +1,19 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+PUBDNSSUFFIXFILE=/home/cloudian/publicdnssuffix
 FILE=CloudianHyperStore-7.4.2.bin
 VERSION=7.4.2
 LICENSE=cloudian_289001406012.lic
 WORKINGPATH=/home/cloudian
 STAGING=/opt/cloudian-staging
+PUBDNSSUFFIX=$(head -n 1 $PUBDNSSUFFIXFILE | awk -F. '{print $NF}')
 
 function run_install () {
         chmod +x $WORKINGPATH/$FILE
         ./$FILE $LICENSE
         cp survey.csv $STAGING/$VERSION/
-        $STAGING/$VERSION/cloudianInstall.sh -b -s survey.csv configure-dnsmasq force-warnings
+        $STAGING/$VERSION/cloudianInstall.sh -b -s survey.csv configure-dnsmasq force-warnings topleveldomain=PUBDNSSUFFIX
 }
 
 if [ -f "$FILE" ]; then
