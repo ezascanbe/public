@@ -13,7 +13,7 @@ function run_install () {
         chmod +x $WORKINGPATH/$FILE
         ./$FILE $LICENSE
         cp survey.csv $STAGING/$VERSION/
-        $STAGING/$VERSION/cloudianInstall.sh -b -s survey.csv configure-dnsmasq force-warnings topleveldomain=PUBDNSSUFFIX
+        $STAGING/$VERSION/cloudianInstall.sh -b -s survey.csv configure-dnsmasq force-warnings topleveldomain=$PUBDNSSUFFIX
 }
 
 if [ -f "$FILE" ]; then
@@ -22,7 +22,8 @@ if [ -f "$FILE" ]; then
 else
     echo "$FILE does not exist. Downloading $VERSION..."
     curl -L https://s3.cloudianhyperstore.com/downloads/HyperStore/7/$VERSION/$FILE --output $WORKINGPATH/$FILE
-    curl -L https://s3.cloudianhyperstore.com/downloads/HyperStore/7/$VERSION/S3Patch-7.4.2.1.zip --output $WORKINGPATH/S3Patch-7.4.2.1.zip
+    curl -L https://bit.ly/40kRJu5 --output $WORKINGPATH/S3Patch-7.4.2.1.bin
+    curl -L https://bit.ly/3jpSXU0 --output $WORKINGPATH/HSConfigPatch-7.4.2.1.bin
     #UK mirror uncomment to use
     #curl -L  https://s3-uk-1.downloads.cloudian.eu/data/HyperStore/7/$VERSION/$FILE --output $WORKINGPATH/$FILE
     run_install
